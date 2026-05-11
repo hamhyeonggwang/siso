@@ -44,6 +44,8 @@ body {
   font-family: var(--font-sans);
   background: var(--siso-bg);
   color: var(--siso-text);
+  font-size: 16px;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
   word-break: keep-all;
 }

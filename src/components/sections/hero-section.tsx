@@ -172,6 +172,28 @@ export function HeroSection() {
           {/* 교육 및 컨설팅 */}
           <ServiceCard service={services[3]} delay={0.08} />
         </div>
+
+        {/* 스크롤 유도 아이콘 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+          className="mt-6 flex justify-center"
+          aria-hidden
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-1"
+          >
+            <span className="text-[11px] font-medium tracking-widest text-[var(--siso-muted)] opacity-60">
+              SCROLL
+            </span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-[var(--siso-muted)] opacity-50">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

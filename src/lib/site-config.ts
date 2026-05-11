@@ -15,6 +15,13 @@ export const siteConfig = {
   businessNumber: "105-91-35006",
   hours: "" as string,
 
+  copyrightStartYear: 2019,
+
+  /** SNS 채널 — 빈 문자열이면 푸터에 표시 안 됨 */
+  instagramUrl: "",
+  youtubeUrl: "",
+  naverBlogUrl: "",
+
   copyrightLine: "Copyright © 2019 SISO CO.,LTD. All Rights Reserved.",
 
   legal: {

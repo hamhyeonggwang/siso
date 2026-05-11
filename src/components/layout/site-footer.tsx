@@ -1,9 +1,17 @@
 import Link from "next/link";
-import { MapPin, Clock, MessageCircle, CalendarCheck } from "lucide-react";
+import { MapPin, Clock, MessageCircle, CalendarCheck, Camera, Play, BookOpen } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LogoImage } from "@/components/ui/logo-image";
 import { siteConfig } from "@/lib/site-config";
+
+const currentYear = new Date().getFullYear();
+
+const snsLinks = [
+  { label: "Instagram", href: siteConfig.instagramUrl, Icon: Camera },
+  { label: "YouTube", href: siteConfig.youtubeUrl, Icon: Play },
+  { label: "네이버 블로그", href: siteConfig.naverBlogUrl, Icon: BookOpen },
+].filter((s) => Boolean(s.href));
 
 export function SiteFooter() {
   const hasHours = Boolean(siteConfig.hours?.trim());
@@ -139,6 +147,22 @@ export function SiteFooter() {
                 &nbsp;|&nbsp;
                 {siteConfig.brandTagline}
               </p>
+              {snsLinks.length > 0 && (
+                <div className="mt-3 flex items-center gap-3">
+                  {snsLinks.map(({ label, href, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#F1F5F9] text-[var(--siso-muted)] transition-colors hover:bg-[color-mix(in_srgb,var(--siso-mint)_15%,white)] hover:text-[var(--siso-mint)]"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--siso-muted)]">
@@ -177,7 +201,9 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-[#F1F5F9] py-5">
         <p className="px-4 text-center text-[11px] leading-relaxed text-[var(--siso-muted)]">
-          {siteConfig.copyrightLine}
+          Copyright © {siteConfig.copyrightStartYear}
+          {currentYear > siteConfig.copyrightStartYear ? `–${currentYear}` : ""}{" "}
+          SISO CO.,LTD. All Rights Reserved.
         </p>
       </div>
     </footer>
