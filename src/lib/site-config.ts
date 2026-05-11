@@ -1,3 +1,19 @@
+export type YoutubeVideo = {
+  id: string;
+  title: string;
+  publishedAt?: string;
+};
+
+/**
+ * 홈 유튜브 섹션 및 시소광장 유튜브 페이지에서 사용할 영상 목록.
+ * id: YouTube 영상 ID (URL의 v= 뒤 값)
+ */
+export const youtubeVideos: YoutubeVideo[] = [
+  // 아래 예시를 실제 유튜브 영상 ID와 제목으로 교체하세요.
+  // YouTube URL https://www.youtube.com/watch?v=XXXXX 에서 XXXXX 부분이 ID입니다.
+  // { id: "XXXXX", title: "영상 제목", publishedAt: "2025-03" },
+];
+
 /** 사이트 공통 연락처·법적 정보 (푸터·CTA 등에서 사용) */
 export const siteConfig = {
   /** 카카오 채널·오픈채팅 URL — 실제 채널로 교체하세요 */

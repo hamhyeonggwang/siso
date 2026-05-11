@@ -9,6 +9,7 @@ import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { ProgramExplorer } from "@/components/sections/program-explorer";
 import { EducationSection } from "@/components/sections/education-section";
 import { ApplicationHubSection } from "@/components/sections/application-hub-section";
+import { YoutubeSection } from "@/components/sections/youtube-section";
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
       <InstitutionPartnershipSection />
       <TestimonialsSection />
       <EducationSection />
+      <YoutubeSection />
       <ApplicationHubSection />
     </>
   );

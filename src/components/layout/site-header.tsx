@@ -36,6 +36,7 @@ const navGroups = [
       { label: "공지사항", href: "/square/notice" },
       { label: "소식", href: "/square/news" },
       { label: "자료실", href: "/square/archive" },
+      { label: "유튜브", href: "/square/youtube" },
     ],
   },
 ] as const;
