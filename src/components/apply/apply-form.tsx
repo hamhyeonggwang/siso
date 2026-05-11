@@ -88,8 +88,21 @@ function InnerApplyForm() {
 
   const watchedType = watch("type");
 
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
+
   const onSubmit = async (values: ApplicationValues) => {
-    await new Promise((resolve) => setTimeout(resolve, 900));
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error("server_error");
+    } catch {
+      setSubmitError("제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
     setSubmittedPayload(values);
     window.scrollTo({ top: 0, behavior: "smooth" });
     router.replace("/apply");
@@ -295,6 +308,11 @@ function InnerApplyForm() {
               양식 비우기
             </Button>
           </div>
+          {submitError && (
+            <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+              {submitError}
+            </p>
+          )}
           <p className="text-[11px] text-[#94A3B8]">
             작성하신 정보는 상담 안내 목적으로만 사용됩니다.
           </p>
