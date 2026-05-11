@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --siso-mint: #67c5b8;
+  --siso-sky: #a9d6e5;
+  --siso-amber: #ffd166;
+  --siso-bg: #f8fafc;
+  --siso-text: #1e293b;
+  --siso-muted: #64748b;
+  --siso-card: #ffffff;
+  /* 호환: 기존 토큰명 */
+  --siso-primary: var(--siso-mint);
+  --siso-accent: var(--siso-sky);
+}
+
+@theme inline {
+  --font-sans: "Pretendard Variable", Pretendard, var(--font-noto-kr), "Apple SD Gothic Neo",
+    "Malgun Gothic", system-ui, sans-serif;
+  --font-heading: "Pretendard Variable", Pretendard, var(--font-noto-kr), "Apple SD Gothic Neo",
+    "Malgun Gothic", system-ui, sans-serif;
+  --color-siso-mint: var(--siso-mint);
+  --color-siso-sky: var(--siso-sky);
+  --color-siso-amber: var(--siso-amber);
+  --color-siso-bg: var(--siso-bg);
+  --color-siso-text: var(--siso-text);
+  --color-siso-muted: var(--siso-muted);
+  --color-siso-primary: var(--siso-mint);
+  --color-siso-accent: var(--siso-sky);
+  --radius-siso-card: 24px;
+  --shadow-soft: 0 14px 40px -32px rgba(30, 41, 59, 0.35);
+  --shadow-card: 0 22px 50px -36px rgba(30, 41, 59, 0.38);
+}
+
+*,
+*::before,
+*::after {
+  border-color: rgb(226 232 240 / 1);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--siso-bg);
+  color: var(--siso-text);
+  text-rendering: optimizeLegibility;
+  word-break: keep-all;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--siso-mint) 35%, white);
+  color: var(--siso-text);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}

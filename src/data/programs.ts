@@ -1,0 +1,87 @@
+import type { Program } from "@/types/content";
+
+export const programs: Program[] = [
+  {
+    id: "p1",
+    slug: "si-participation-lab",
+    title: "감각통합 참여 랩",
+    shortDescription:
+      "감각통합 관점의 소그룹에서 조절·또래 참여를 연습합니다.",
+    thumbnailHint: "그리드",
+    ageGroups: ["lower_elementary", "upper_elementary"],
+    categories: ["group", "self_regulation", "school_participation"],
+    tags: ["감통", "그룹"],
+    status: "open",
+  },
+  {
+    id: "p2",
+    slug: "school-ready-skills",
+    title: "학교 준비 참여 OT",
+    shortDescription: "교실 요구와 맞춘 개별 작업치료·과제·수업 리듬.",
+    thumbnailHint: "책상",
+    ageGroups: ["upper_elementary", "teen"],
+    categories: ["individual", "school_participation", "social_skills"],
+    tags: ["학교", "OT"],
+    status: "waitlist",
+  },
+  {
+    id: "p3",
+    slug: "social-navigators",
+    title: "소셜 내비게이터 서클",
+    shortDescription: "청소년 소그룹 사회적 타이밍·자기표현 연습.",
+    thumbnailHint: "콜라주",
+    ageGroups: ["teen"],
+    categories: ["group", "social_skills"],
+    tags: ["청소년"],
+    status: "open",
+  },
+  {
+    id: "p4",
+    slug: "regulation-reset",
+    title: "조절 리셋 인텐시브",
+    shortDescription: "과부하 순간을 위한 짧은 코칭·부모 연계.",
+    thumbnailHint: "그라데이션",
+    ageGroups: ["preschool", "lower_elementary"],
+    categories: ["individual", "self_regulation"],
+    tags: ["가정 연계"],
+    status: "open",
+  },
+  {
+    id: "p5",
+    slug: "executive-athletes",
+    title: "실행기능 스튜디오 (청소년)",
+    shortDescription: "움직임과 리듬을 곁들인 실행기능 연습.",
+    thumbnailHint: "라인",
+    ageGroups: ["teen"],
+    categories: ["group", "self_regulation", "school_participation"],
+    tags: ["실행기능"],
+    status: "invite_only",
+  },
+  {
+    id: "p6",
+    slug: "community-explorers",
+    title: "커뮤니티 익스플로러 (토)",
+    shortDescription: "마트·이동 등 실제 환경에서 감각 계획을 연습합니다.",
+    thumbnailHint: "거리",
+    ageGroups: ["upper_elementary", "teen"],
+    categories: ["group", "school_participation"],
+    tags: ["야외"],
+    status: "waitlist",
+  },
+];
+
+export const programFilterLabels = {
+  age: {
+    preschool: "유아",
+    lower_elementary: "초저",
+    upper_elementary: "초고",
+    teen: "청소년",
+  },
+  focus: {
+    group: "그룹",
+    individual: "개별",
+    social_skills: "사회성",
+    self_regulation: "자기조절",
+    school_participation: "학교 참여",
+  },
+} as const;
