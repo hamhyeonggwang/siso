@@ -5,12 +5,16 @@ import {
   ClipboardList,
   Clock,
   Phone,
-  ArrowRight,
-  CheckCircle2,
   Users,
   Baby,
   Brain,
   Activity,
+  Eye,
+  FileSearch,
+  Star,
+  Layers,
+  HelpCircle,
+  ArrowRight,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -22,35 +26,42 @@ export const metadata: Metadata = {
     "초기상담과 양육상담, 감각통합 및 작업치료 평가 서비스를 안내합니다. 시소감각통합상담연구소의 전문가가 아이와 가족의 이야기를 함께 듣습니다.",
 };
 
-/* ─── 상담 서비스 ─── */
-const consultItems = [
+/* ─── 초기상담 절차 5단계 ─── */
+const consultSteps = [
   {
-    title: "초기상담",
-    Icon: MessageCircle,
-    color: "bg-[color-mix(in_srgb,var(--siso-mint)_14%,white)]",
-    iconColor: "text-[var(--siso-mint)]",
-    desc: "처음 방문하시는 보호자를 위한 상담입니다. 아이의 발달과 일상생활, 가족의 걱정을 함께 들으며 이후 방향을 안내합니다.",
-    detail: [
-      "보호자 면담 (약 1시간)",
-      "아이의 발달 및 행동 이해",
-      "필요시 아동 관찰 1회 추가",
-      "서비스 방향 안내 및 연계",
-    ],
-    time: "소요시간: 약 1시간",
+    num: 1,
+    icon: FileSearch,
+    label: "배경정보 수집",
+    fullLabel: "아동의 배경정보 수집",
+    desc: "아동의 발달 이력, 출생력, 가족 구성, 주요 생활 환경을 파악합니다.",
   },
   {
-    title: "양육상담",
-    Icon: Users,
-    color: "bg-[color-mix(in_srgb,var(--siso-sky)_20%,white)]",
-    iconColor: "text-[#3B82F6]",
-    desc: "아이의 행동이나 발달, 양육 과정에서 겪는 어려움에 대해 전문가와 함께 이야기합니다. 보호자의 언어로 풀어 드립니다.",
-    detail: [
-      "보호자 중심 상담",
-      "가정 내 행동 이해 및 대응",
-      "학교·기관 연계 방안 논의",
-      "양육 전략 및 환경 조정",
-    ],
-    time: "소요시간: 약 1시간",
+    num: 2,
+    icon: MessageCircle,
+    label: "작업프로파일 인터뷰",
+    fullLabel: "작업프로파일 인터뷰",
+    desc: "일상 활동에서의 참여도, 수행 방식, 가족이 중요하게 여기는 작업을 탐색합니다.",
+  },
+  {
+    num: 3,
+    icon: Star,
+    label: "강점 파악",
+    fullLabel: "아동의 강점 파악",
+    desc: "아이가 잘 하는 것, 즐기는 것, 성공 경험을 중심으로 강점을 확인합니다.",
+  },
+  {
+    num: 4,
+    icon: Layers,
+    label: "자원 파악",
+    fullLabel: "자원 파악",
+    desc: "가정·기관·지역사회에서 활용 가능한 지원 자원과 환경적 강점을 파악합니다.",
+  },
+  {
+    num: 5,
+    icon: HelpCircle,
+    label: "의뢰사유",
+    fullLabel: "의뢰사유",
+    desc: "보호자가 상담을 신청하게 된 주된 이유와 기대하는 변화를 확인합니다.",
   },
 ];
 
@@ -129,37 +140,168 @@ export default function ConsultationPage() {
               상담 서비스
             </h2>
             <p className="mt-2 text-[15px] text-[var(--siso-muted)]">
-              전문용어 대신 보호자의 언어로 이야기합니다.
+              서비스 중재를 받기를 원하시는 경우 초기상담을 실시합니다.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {consultItems.map((item) => {
-              const Icon = item.Icon;
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-[24px] border border-[#E2E8F0]/90 bg-white p-7 shadow-soft"
-                >
-                  <span className={`inline-grid h-12 w-12 place-items-center rounded-2xl ${item.color}`}>
-                    <Icon className={`h-6 w-6 ${item.iconColor}`} strokeWidth={1.5} />
-                  </span>
-                  <h3 className="mt-5 text-xl font-bold text-[var(--siso-text)]">{item.title}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-[var(--siso-muted)]">{item.desc}</p>
-                  <ul className="mt-5 space-y-2">
-                    {item.detail.map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-[13px] text-[var(--siso-text)]">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--siso-mint)]" strokeWidth={2} />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-5 flex items-center gap-1.5 text-[12px] font-medium text-[var(--siso-muted)]">
-                    <Clock className="h-3.5 w-3.5" />
-                    {item.time}
+
+          {/* 초기상담 */}
+          <div className="rounded-[28px] border border-[var(--siso-mint)]/25 bg-white shadow-sm overflow-hidden">
+            {/* 헤더 배너 */}
+            <div className="bg-gradient-to-r from-[color-mix(in_srgb,var(--siso-mint)_12%,white)] to-[color-mix(in_srgb,var(--siso-sky)_10%,white)] px-7 py-6 border-b border-[#E2E8F0]/60">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="inline-grid h-11 w-11 place-items-center rounded-2xl bg-[var(--siso-mint)]">
+                  <MessageCircle className="h-5 w-5 text-white" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xl font-black tracking-tight text-[var(--siso-text)]">초기상담</h3>
+                    <span className="rounded-full bg-[var(--siso-mint)] px-3 py-0.5 text-[11px] font-bold text-white">
+                      전문가 2인 동시 진행
+                    </span>
                   </div>
+                  <p className="mt-0.5 text-[13px] text-[var(--siso-muted)]">Initial Consultation</p>
                 </div>
-              );
-            })}
+                <div className="ml-auto flex items-center gap-1.5 text-[12px] font-medium text-[var(--siso-muted)]">
+                  <Clock className="h-3.5 w-3.5" />
+                  소요시간: 약 1시간
+                </div>
+              </div>
+            </div>
+
+            <div className="p-7 space-y-8">
+              {/* 설명 */}
+              <p className="text-[15px] leading-relaxed text-[var(--siso-text)]">
+                초기상담 시 <strong className="font-bold text-[var(--siso-text)]">두 명의 전문가</strong>가
+                부모상담과 아동관찰을 동시에 진행합니다. 상담은 아동의 정보를 모으는 과정으로,
+                의뢰사유와 더불어 아동의 작업수행 참여도를 파악하고 수행상의 강약점을 파악하는
+                <strong className="font-bold text-[var(--siso-text)]"> 작업중심 인터뷰</strong>를 실시합니다.
+              </p>
+
+              {/* 두 트랙 */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-[18px] bg-[color-mix(in_srgb,var(--siso-mint)_8%,white)] border border-[var(--siso-mint)]/20 p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--siso-mint)]">
+                      <Users className="h-4 w-4 text-white" />
+                    </span>
+                    <p className="font-bold text-[var(--siso-text)]">부모 상담</p>
+                  </div>
+                  <p className="text-[13px] leading-relaxed text-[var(--siso-muted)]">
+                    의뢰사유와 아동의 작업수행 참여도를 파악하고, 수행상의 강약점을 파악하는
+                    작업중심의 인터뷰를 실시합니다.
+                  </p>
+                </div>
+                <div className="rounded-[18px] bg-[color-mix(in_srgb,var(--siso-sky)_10%,white)] border border-[var(--siso-sky)]/25 p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--siso-sky)]">
+                      <Eye className="h-4 w-4 text-[#1E3A5F]" />
+                    </span>
+                    <p className="font-bold text-[var(--siso-text)]">아동 관찰 평가</p>
+                  </div>
+                  <p className="text-[13px] leading-relaxed text-[var(--siso-muted)]">
+                    자유놀이와 신체 활동을 통해 <strong className="font-semibold text-[var(--siso-text)]">놀이발달</strong>,{" "}
+                    <strong className="font-semibold text-[var(--siso-text)]">감각조절기능</strong>,{" "}
+                    <strong className="font-semibold text-[var(--siso-text)]">움직임의 질</strong>을 평가합니다.
+                  </p>
+                </div>
+              </div>
+
+              {/* 초기상담 절차 시각화 */}
+              <div>
+                <p className="mb-5 text-[13px] font-bold tracking-wide text-[var(--siso-muted)] uppercase">
+                  초기상담 진행 순서
+                </p>
+
+                {/* 데스크탑: 가로 플로우 */}
+                <div className="hidden md:flex items-start gap-0">
+                  {consultSteps.map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                      <div key={step.num} className="flex flex-1 items-start">
+                        <div className="flex flex-col items-center text-center flex-1">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--siso-mint)] shadow-md shadow-[var(--siso-mint)]/20">
+                            <Icon className="h-5 w-5 text-white" strokeWidth={1.8} />
+                          </div>
+                          <span className="mt-1 text-[10px] font-bold text-[var(--siso-mint)]">
+                            STEP {step.num}
+                          </span>
+                          <p className="mt-1.5 text-[12px] font-bold leading-snug text-[var(--siso-text)] px-1">
+                            {step.fullLabel}
+                          </p>
+                          <p className="mt-1 text-[11px] leading-snug text-[var(--siso-muted)] px-2 hidden lg:block">
+                            {step.desc}
+                          </p>
+                        </div>
+                        {i < consultSteps.length - 1 && (
+                          <div className="mt-5 shrink-0 px-1">
+                            <ArrowRight className="h-4 w-4 text-[var(--siso-mint)]/50" />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* 모바일: 세로 타임라인 */}
+                <ol className="md:hidden space-y-0">
+                  {consultSteps.map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                      <li key={step.num} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--siso-mint)] shadow-sm">
+                            <Icon className="h-4 w-4 text-white" strokeWidth={1.8} />
+                          </div>
+                          {i < consultSteps.length - 1 && (
+                            <div className="w-px flex-1 my-1 bg-[var(--siso-mint)]/25 min-h-[1.5rem]" />
+                          )}
+                        </div>
+                        <div className="pb-5">
+                          <p className="text-[10px] font-bold text-[var(--siso-mint)]">STEP {step.num}</p>
+                          <p className="text-[14px] font-bold text-[var(--siso-text)]">{step.fullLabel}</p>
+                          <p className="mt-0.5 text-[12px] text-[var(--siso-muted)]">{step.desc}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          {/* 양육상담 */}
+          <div className="mt-5 rounded-[24px] border border-[#E2E8F0]/80 bg-white p-7 shadow-sm">
+            <div className="flex flex-wrap items-start gap-5 md:gap-8">
+              <span className="inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[color-mix(in_srgb,var(--siso-sky)_18%,white)]">
+                <Users className="h-5 w-5 text-[#3B82F6]" strokeWidth={1.8} />
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-xl font-black tracking-tight text-[var(--siso-text)]">양육상담</h3>
+                  <span className="rounded-full bg-[#DBEAFE] px-3 py-0.5 text-[11px] font-bold text-[#1D4ED8]">
+                    부모님만 방문
+                  </span>
+                </div>
+                <p className="mt-3 text-[15px] leading-relaxed text-[var(--siso-muted)]">
+                  양육자가 양육과 관련하여 정보와 지원이 필요한 경우 상담을 요청할 수 있습니다.
+                  이 경우, <strong className="font-semibold text-[var(--siso-text)]">부모님만 방문하여 상담을 실시</strong>합니다.
+                  아이의 행동이나 발달, 양육 과정에서 겪는 어려움을 전문가와 함께 이야기하며
+                  가정 내 실천 전략을 함께 찾아갑니다.
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-[var(--siso-text)]">
+                  {["보호자 중심 개별 상담", "가정 내 행동·환경 이해", "학교·기관 연계 방안 논의", "양육 전략 및 환경 조정"].map((t) => (
+                    <li key={t} className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex items-center gap-1.5 text-[12px] font-medium text-[var(--siso-muted)]">
+                  <Clock className="h-3.5 w-3.5" />
+                  소요시간: 약 1시간
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
