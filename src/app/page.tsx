@@ -5,11 +5,9 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { InstitutionPartnershipSection } from "@/components/sections/institution-partnership-section";
 import { PhilosophySection } from "@/components/sections/philosophy-section";
 import { ServicesIntroSection } from "@/components/sections/services-intro-section";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { ProgramExplorer } from "@/components/sections/program-explorer";
+import { SnsSection } from "@/components/sections/sns-section";
 import { EducationSection } from "@/components/sections/education-section";
 import { ApplicationHubSection } from "@/components/sections/application-hub-section";
-import { YoutubeSection } from "@/components/sections/youtube-section";
 
 export default function HomePage() {
   return (
@@ -20,13 +18,11 @@ export default function HomePage() {
       <CaregiverConcernsSection />
       <ServicesIntroSection />
       <ConsultationStepsSection />
-      {/* 부가 정보: 프로그램, 철학, 기관협력, 후기, 교육 */}
-      <ProgramExplorer />
+      {/* 부가 정보: 철학, 기관협력, SNS, 교육 */}
       <PhilosophySection />
       <InstitutionPartnershipSection />
-      <TestimonialsSection />
+      <SnsSection />
       <EducationSection />
-      <YoutubeSection />
       <ApplicationHubSection />
     </>
   );
